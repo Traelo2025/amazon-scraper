@@ -24,9 +24,14 @@ const handler = async (req, res) => {
     // ======================================
     // 3. Scrapear Amazon con Puppeteer
     // ======================================
-    const browser = await puppeteer.launch({ 
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'] // Necesario para Vercel
+    const browser = await puppeteer.launch({
+      headless: "new",
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage"
+      ],
+      executablePath: process.env.CHROME_EXECUTABLE_PATH || await chromium.executablePath(), // Usa Chromium para Vercel
     });
     
     const page = await browser.newPage();
