@@ -1,6 +1,13 @@
 // Importar dependencias
 const puppeteer = require('puppeteer');
 const axios = require('axios');
+const chromium = require("@sparticuz/chromium"); // Requerido para Vercel
+
+const browser = await puppeteer.launch({
+  headless: "new",
+  args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+  executablePath: process.env.CHROME_EXECUTABLE_PATH || await chromium.executablePath(),
+});
 
 // Función principal (manejador de la API)
 const handler = async (req, res) => {
@@ -33,7 +40,7 @@ const handler = async (req, res) => {
       ],
       executablePath: process.env.CHROME_EXECUTABLE_PATH || await chromium.executablePath(), // Usa Chromium para Vercel
     });
-    
+
     const page = await browser.newPage();
     await page.goto(`https://www.amazon.com/dp/${ASIN}`, {
       waitUntil: 'domcontentloaded',
