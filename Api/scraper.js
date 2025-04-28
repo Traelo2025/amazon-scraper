@@ -1,10 +1,10 @@
 // Importar dependencias
 const puppeteer = require('puppeteer');
 const axios = require('axios');
-const chromium = require("@sparticuz/chromium"); // Requerido para Vercel
+const chromium = require("@sparticuz/chromium");
 
 const browser = await puppeteer.launch({
-  headless: "new",
+  headless: "new",  // Modo headless requerido en Puppeteer 22+
   args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
   executablePath: process.env.CHROME_EXECUTABLE_PATH || await chromium.executablePath(),
 });
