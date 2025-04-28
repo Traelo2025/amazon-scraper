@@ -40,7 +40,7 @@ const handler = async (req, res) => {
       title: document.querySelector('#productTitle')?.innerText?.trim() || 'Sin título',
       price: parseFloat(
         (document.querySelector('.a-price-whole')?.innerText?.replace(/[^0-9.]/g, '') || 0
-      ),
+      )),
       image: document.querySelector('#landingImage')?.src || '',
     }));
     
