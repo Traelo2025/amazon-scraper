@@ -3,7 +3,8 @@
   "builds": [
     {
       "src": "api/scraper.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": { "includeFiles": ["api/**"] }
     }
   ],
   "routes": [
